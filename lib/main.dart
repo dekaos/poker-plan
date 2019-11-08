@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poker_plan/utils/nav.dart';
 import 'package:poker_plan/widgets/button.dart';
-import 'package:swipedetector/swipedetector.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -103,9 +102,11 @@ class Detail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    return SwipeDetector(
-      onSwipeLeft: () {
-        Navigator.pop(context);
+    return GestureDetector(
+      onPanUpdate: (details) {
+        if (details.delta.dx < -10) {
+          Navigator.pop(context);
+        }
       },
       child: Container(
         color: Colors.black,
