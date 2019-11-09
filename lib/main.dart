@@ -84,8 +84,9 @@ class PokerPlanList extends StatelessWidget {
                     text: '∞',
                     onPressed: () => _goToDetail(context, Detail(text: '∞'))),
                 Button(
-                  text: '☕',
-                  onPressed: () => _goToDetail(context, Detail(text: '☕')),
+                  text: '',
+                  imageUrl: 'assets/images/coffee.png',
+                  onPressed: () => _goToDetail(context, Detail(text: '', imageUrl: 'assets/images/coffee.png')),
                 )
               ],
             ),
@@ -96,12 +97,17 @@ class PokerPlanList extends StatelessWidget {
 
 class Detail extends StatelessWidget {
   final String text;
+  final String imageUrl;
 
-  Detail({Key key, this.text});
+  Detail({Key key, this.text = '', this.imageUrl = ''});
 
   @override
   Widget build(BuildContext context) {
+
     final double screenWidth = MediaQuery.of(context).size.width;
+    final hasImage = imageUrl.length > 0 ? true : false;
+    final hasText = text.length > 0 ? true : false;
+
     return GestureDetector(
       onPanUpdate: (details) {
         if (details.delta.dx < -10) {
@@ -121,15 +127,19 @@ class Detail extends StatelessWidget {
                 ),
                 width: screenWidth / 1.5,
                 height: screenWidth / 1.5,
-                child: Center(
-                  child: Text(
-                    this.text,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: screenWidth / 4,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    hasText ? Text(
+                      this.text,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: screenWidth / 4,
+                        decoration: TextDecoration.none,
+                      ),
+                    ) : Center(),
+                    hasImage ? Center(child: Image(image: AssetImage(imageUrl))) : Center(),
+                  ],
                 ),
               )
             ]
