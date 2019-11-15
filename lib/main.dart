@@ -136,6 +136,7 @@ class Detail extends StatelessWidget {
                         color: Colors.white,
                         fontSize: screenWidth / 4,
                         decoration: TextDecoration.none,
+                        fontWeight: FontWeight.w500,
                       ),
                     ) : Center(),
                     hasImage ? Center(child: Image(image: AssetImage(imageUrl))) : Center(),

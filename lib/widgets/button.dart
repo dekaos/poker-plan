@@ -30,7 +30,7 @@ class Button extends StatelessWidget {
             children: <Widget>[
               hasText ? Text(
                 text,
-                style: TextStyle(color: Colors.white, fontSize: screenWidth / 12),
+                style: TextStyle(color: Colors.white, fontSize: screenWidth / 12, fontWeight: FontWeight.w500),
               ): Container(),
               hasImage ? Center(child: Image(image: AssetImage(imageUrl))) : Center(),
             ],
